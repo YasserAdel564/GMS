@@ -1,6 +1,6 @@
 # GMS
 
-GMs is Mediacl App For Watch Different Courses related with Medical Field 
+GMs is Medical App For Watch Different Courses related with Medical Field 
 
 ## Features
 - [x] Kotlin
