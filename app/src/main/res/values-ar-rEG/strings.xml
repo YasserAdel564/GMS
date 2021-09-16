@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GMS</string>
+    <string name="splash_label">الصفحه الترحيبيه</string>
+    <string name="signUp_label">تسجيل مستخدم جديد</string>
+    <string name="login_label">تسجيل دخول</string>
+    <string name="forget_password"><u>استعادة كلمة المرور؟</u></string>
+    <string name="home_label">الرئيسيه</string>
+    <string name="error_general">حدث خطأ ما</string>
+    <string name="no_Connection">لايوجد إتصال بالانترنت</string>
+    <string name="send">إرسال</string>
+    <string name="try_again">حاول مره أخري</string>
+    <string name="empty_content">لايوجد محتوي متوفر</string>
+    <string name="loading">جاري التحميل…</string>
+    <string name="full_name">الإسم بالكامل</string>
+    <string name="email">البريد الإليكتروني</string>
+    <string name="password">كلمه السر</string>
+    <string name="confirm_password">تأكيد كلمة السر</string>
+    <string name="phone">رقم الموبايل</string>
+    <string name="address">العنوان</string>
+    <string name="date_of_birth">تاريخ الميلاد</string>
+    <string name="contact">رقم التواصل</string>
+    <string name="university">الجامعه</string>
+    <string name="education">التعليم</string>
+    <string name="graduation_year">سنة التخرج</string>
+    <string name="note">ملاحظات</string>
+    <string name="guest">زائر</string>
+    <string name="select_gender">اختر النوع</string>
+    <string name="select_country">اختر البلد</string>
+    <string name="select_nationality">اختر الجنسيه</string>
+    <string name="select_living">اختر محل الإقامه</string>
+    <string name="required_field">هذا الحقل مطلوب</string>
+    <string name="password_mis_match">كلمة المرور غير متطابقه</string>
+    <string name="email_validation">خطأ في صيغة البريد إلكتروني</string>
+    <string name="password_validation">يجب أن تحتوي كلمة المرور على 8 خانات </string>
+    <string name="success">تم بنجاح</string>
+</resources>

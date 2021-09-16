@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">GMS</string>
+    <string name="splash_label">Splash</string>
+    <string name="signUp_label">SignUp</string>
+    <string name="login_label">Login</string>
+    <string name="forget_password"><u>Forget Password?</u></string>
+    <string name="home_label">Home</string>
+    <string name="error_general">Error,Try Again</string>
+    <string name="no_Connection">No Internet Connection</string>
+    <string name="send">Submit</string>
+    <string name="try_again">Try Again</string>
+    <string name="empty_content">No Content Available</string>
+    <string name="loading">Loading…</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="contact">Contact Num</string>
+
+    <string name="university">University</string>
+    <string name="education">Education</string>
+    <string name="graduation_year">Graduation year</string>
+    <string name="note">Notes</string>
+    <string name="guest">Guest</string>
+
+    <string name="select_gender">Select Your Gender</string>
+    <string name="select_country">Select Your Country</string>
+    <string name="select_nationality">Select Your Nationality</string>
+    <string name="select_living">Select Your Living</string>
+    <string name="required_field">Required Field</string>
+    <string name="email_validation">Email is Not Valid</string>
+    <string name="password_mis_match">Password MisMatch</string>
+    <string name="password_validation">Password must contain 8 Keys</string>
+    <string name="success">Success</string>
+</resources>
