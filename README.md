@@ -21,6 +21,6 @@ GMs is Mediacl App For Watch Different Courses related with Medical Field
  * Apply Unit Tests
 
 ## License
-* This project is licensed under the MIT License - see the [License](https://github.com/YasserAdel564/GMS/blob/master/LICENSE)
+* This project is licensed under the MIT License - see the [License](https://github.com/YasserAdel564/GMS/blob/master/License)
  file for details
 
