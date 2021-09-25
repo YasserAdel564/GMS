@@ -1,7 +1,7 @@
-package com.gms.app.ui.home
+package com.gms.app.ui.main.contactUs
 
 import androidx.lifecycle.ViewModel
 
-class HomeVM : ViewModel() {
+class ContactUsVM : ViewModel() {
     // TODO: Implement the ViewModel
 }

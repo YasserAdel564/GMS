@@ -80,12 +80,11 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:4.11.0"
     implementation "pub.devrel:easypermissions:3.0.0"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'com.airbnb.android:lottie:3.4.2'
     implementation 'com.google.code.ksoap2-android:ksoap2-android-assembly:3.6.2'
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.0'
-
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-testing:2.3.0"
@@ -94,4 +93,5 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
     implementation 'com.blankj:utilcodex:1.30.6'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 }

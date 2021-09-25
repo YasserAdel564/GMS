@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         if (preferencesHelper().language.isEmpty()) {
-            super.attachBaseContext(MyContextWrapper.wrap(newBase, "ar"))
+            super.attachBaseContext(MyContextWrapper.wrap(newBase, "en"))
         } else {
             super.attachBaseContext(MyContextWrapper.wrap(newBase, preferencesHelper().language))
         }

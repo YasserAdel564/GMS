@@ -1,10 +1,7 @@
 package com.gms.app.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +47,12 @@ class SplashFragment : Fragment() {
         timer = object : CountDownTimer(6000, 500) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
-                findNavController().navigate(R.id.action_splash_fragment_to_home_fragment)
+                findNavController().navigate(
+                    R.id.main_fragment, null, NavOptions.Builder().setPopUpTo(
+                        R.id.splash_fragment,
+                        true
+                    ).build()
+                )
             }
         }
         timer!!.start()

@@ -3,8 +3,13 @@
     <string name="splash_label">Splash</string>
     <string name="signUp_label">SignUp</string>
     <string name="login_label">Login</string>
-    <string name="forget_password"><u>Forget Password?</u></string>
+
     <string name="home_label">Home</string>
+    <string name="programs_label">Programs</string>
+    <string name="contact_us_label">Contact Us</string>
+    <string name="about_us_label">About Us</string>
+
+    <string name="forget_password"><u>Forget Password?</u></string>
     <string name="error_general">Error,Try Again</string>
     <string name="no_Connection">No Internet Connection</string>
     <string name="send">Submit</string>
@@ -35,4 +40,6 @@
     <string name="password_mis_match">Password MisMatch</string>
     <string name="password_validation">Password must contain 8 Keys</string>
     <string name="success">Success</string>
+    <string name="program">Endodontics</string>
+    <string name="department">Surgery</string>
 </resources>

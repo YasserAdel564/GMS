@@ -25,7 +25,7 @@ class PreferencesHelper @Inject constructor(@ApplicationContext val context: Con
         set(value) = preference.edit().putString(UID, value).apply()
 
     var language :String
-        get() = preference.getString(LANGUAGE, "AR").toString()
+        get() = preference.getString(LANGUAGE, "EN").toString()
         set(value) = preference.edit().putString(LANGUAGE, value).apply()
 
 }

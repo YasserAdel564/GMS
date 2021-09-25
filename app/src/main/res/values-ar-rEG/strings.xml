@@ -4,8 +4,11 @@
     <string name="splash_label">الصفحه الترحيبيه</string>
     <string name="signUp_label">تسجيل مستخدم جديد</string>
     <string name="login_label">تسجيل دخول</string>
-    <string name="forget_password"><u>استعادة كلمة المرور؟</u></string>
     <string name="home_label">الرئيسيه</string>
+    <string name="programs_label">البرامج</string>
+    <string name="contact_us_label">تواصل معنا</string>
+    <string name="about_us_label">من نحن</string>
+    <string name="forget_password"><u>استعادة كلمة المرور؟</u></string>
     <string name="error_general">حدث خطأ ما</string>
     <string name="no_Connection">لايوجد إتصال بالانترنت</string>
     <string name="send">إرسال</string>
@@ -34,4 +37,7 @@
     <string name="email_validation">خطأ في صيغة البريد إلكتروني</string>
     <string name="password_validation">يجب أن تحتوي كلمة المرور على 8 خانات </string>
     <string name="success">تم بنجاح</string>
+    <string name="program">برنامج</string>
+    <string name="department">قسم</string>
+
 </resources>
