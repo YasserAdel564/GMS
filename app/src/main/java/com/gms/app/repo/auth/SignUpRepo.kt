@@ -1,5 +1,6 @@
 package com.gms.app.repo.auth
 
+import android.util.Log
 import com.gms.app.data.storage.local.PreferencesHelper
 import com.gms.app.data.storage.remote.model.auth.AuthResponse
 import com.gms.app.data.storage.remote.model.auth.SignUpBody
@@ -62,6 +63,8 @@ constructor(
             val id: String = soapObject.getProperty("ID").toString()
             val message: String = soapObject.getProperty("MS").toString()
             model = AuthResponse(id = id.toInt(), message = message)
+            Log.e("id",id)
+            Log.e("message",message)
         }
         return model
     }

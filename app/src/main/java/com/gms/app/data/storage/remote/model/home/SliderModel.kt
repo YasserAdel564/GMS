@@ -5,11 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 class SliderModel(
-    var name: String,
-    var bg: String,
-    var media: String,
-    var title: String,
+    var id: Int,
+    var headline: String,
+    var paragraph: String,
     var text: String,
-    var btn: String,
+    var slice: String,
     var link: String
 )

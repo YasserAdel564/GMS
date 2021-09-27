@@ -3,6 +3,7 @@ package com.gms.app.utils
 
 object Constants {
     const val BaseUrl = "http://services.gmsformedical.net/Service.asmx"
+    const val ImagesUrl = "http://gmsformedical.com/images/"
     const val NameSpace = "http://tempuri.org/"
 
     enum class Language(val value: String) {
@@ -15,7 +16,9 @@ object Constants {
         GetGender("GetGender"),
         GetLiving("GetLiving"),
         GetNationality("GetNationalty"),
-        SignUp("ADD_New_Customers")
+        SignUp("ADD_New_Customers"),
+        GetSliderImages("GetSlices"),
+        GetAllPrograms("DetDiplomas")
     }
 
     enum class ErrorType {

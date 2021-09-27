@@ -1,23 +1,21 @@
 package com.gms.app.ui.main.programes
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.gms.app.R
-import com.gms.app.databinding.HomeFragmentBinding
+import androidx.fragment.app.viewModels
 import com.gms.app.databinding.ProgramsFragmentBinding
-import com.gms.app.ui.main.home.DepartmentsAdapter
-import com.gms.app.utils.TestList
+import com.gms.app.utils.UiStates
+import com.gms.app.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProgramsFragment : Fragment() {
 
     lateinit var binding: ProgramsFragmentBinding
-    private lateinit var viewModel: ProgramsVM
+    private val viewModel: ProgramsVM by viewModels()
     private var adapter: ProgramsAdapter? = null
 
     override fun onCreateView(
@@ -28,21 +26,54 @@ class ProgramsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProgramsVM::class.java)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.uiState.observeEvent(viewLifecycleOwner) { onResponse(it) }
+        viewModel.getAllPrograms()
         setUpRV()
     }
 
     private fun setUpRV() {
-        adapter = ProgramsAdapter(requireActivity(),
-            TestList.ITEMS as ArrayList<TestList.TestItem>
-        )
-        binding.homeRv.adapter = adapter
+        adapter = ProgramsAdapter(requireActivity())
+        binding.programsRv.adapter = adapter
     }
+
+    private fun onResponse(states: UiStates?) {
+        when (states) {
+            UiStates.Loading -> {
+                onLoading()
+            }
+            UiStates.Success -> {
+                adapter?.renderData(viewModel.programsList)
+                viewInputs()
+            }
+            UiStates.Empty -> {
+                viewInputs()
+            }
+            UiStates.NoConnection -> {
+                onNoConnection()
+            }
+        }
+    }
+
+    private fun onLoading() {
+        binding.programsRv.visibility = View.GONE
+        binding.loadingLayout.root.visibility = View.VISIBLE
+        binding.loadingLayout.loading.visibility = View.VISIBLE
+    }
+
+    private fun viewInputs() {
+        binding.programsRv.visibility = View.VISIBLE
+        binding.loadingLayout.root.visibility = View.GONE
+    }
+
+    private fun onNoConnection() {
+        binding.programsRv.visibility = View.GONE
+        binding.loadingLayout.root.visibility = View.VISIBLE
+        binding.loadingLayout.loading.visibility = View.GONE
+        binding.loadingLayout.noConnection.visibility = View.VISIBLE
+    }
+
 
 }

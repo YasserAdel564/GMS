@@ -1,28 +1,23 @@
 package com.gms.app.ui.main.programes
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gms.app.R
-import com.gms.app.utils.TestList
+import com.gms.app.data.storage.remote.model.programs.ProgrammeModel
 import kotlin.collections.ArrayList
 
 class ProgramsAdapter internal constructor(
-    mContext: Context,
-    apps: ArrayList<TestList.TestItem>
+    private val mContext: Context
 ) : RecyclerView.Adapter<ProgramsAdapter.AppViewHolder>() {
 
 
-    private val mContext: Context = mContext
-    private var mData: ArrayList<TestList.TestItem> = apps
+    private var mData: ArrayList<ProgrammeModel> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
         return AppViewHolder(
@@ -31,11 +26,11 @@ class ProgramsAdapter internal constructor(
     }
 
 
-    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        holder.depName.text = mContext.resources.getString(R.string.department) + " " + position + 1
+        val model = mData[position]
+        holder.depName.text = model.title
         Glide.with(mContext)
-            .load("https://images.indianexpress.com/2020/04/online759.jpg")
+            .load(model.img)
             .into(holder.depImage)
     }
 
@@ -43,12 +38,12 @@ class ProgramsAdapter internal constructor(
         return mData.size
     }
 
-    fun renderData(it: ArrayList<TestList.TestItem>) {
-        mData = it
+    fun renderData(it: ArrayList<ProgrammeModel>) {
+        mData.addAll(it)
         notifyDataSetChanged()
     }
 
-    fun updateItem(item: TestList.TestItem, position: Int) {
+    fun updateItem(item: ProgrammeModel, position: Int) {
         mData[position] = item
         mData[position] = item
         notifyItemChanged(position)

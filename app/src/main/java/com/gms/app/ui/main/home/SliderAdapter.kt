@@ -53,10 +53,10 @@ class SliderAdapter : PagerAdapter() {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .priority(Priority.HIGH)
         Glide.with(container.context)
-            .load(slider[position].bg)
+            .load(slider[position].slice)
             .apply(options)
             .into(image)
-        title.text = slider[position].name
+        title.text = slider[position].headline + "\n" + slider[position].paragraph
         return view
     }
 
