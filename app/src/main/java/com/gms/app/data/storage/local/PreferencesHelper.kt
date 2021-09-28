@@ -14,6 +14,8 @@ class PreferencesHelper @Inject constructor(@ApplicationContext val context: Con
         const val SHARED_NAME = "GMS"
         private const val UID = "UID"
         private const val LANGUAGE = "LANGUAGE"
+        private const val IsLOGIN = "IsLOGIN"
+        private const val UserId = "UserId"
     }
 
     init {
@@ -27,5 +29,13 @@ class PreferencesHelper @Inject constructor(@ApplicationContext val context: Con
     var language :String
         get() = preference.getString(LANGUAGE, "EN").toString()
         set(value) = preference.edit().putString(LANGUAGE, value).apply()
+
+    var isLogin :Boolean
+        get() = preference.getBoolean(IsLOGIN, false)
+        set(value) = preference.edit().putBoolean(IsLOGIN, value).apply()
+
+    var userId :String
+        get() = preference.getString(UserId, null).toString()
+        set(value) = preference.edit().putString(UserId, value).apply()
 
 }

@@ -17,6 +17,7 @@ object Constants {
         GetLiving("GetLiving"),
         GetNationality("GetNationalty"),
         SignUp("ADD_New_Customers"),
+        Login("GetLogin"),
         GetSliderImages("GetSlices"),
         GetAllPrograms("DetDiplomas")
     }

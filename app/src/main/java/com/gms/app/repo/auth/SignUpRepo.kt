@@ -13,9 +13,7 @@ import org.ksoap2.transport.HttpTransportSE
 import javax.inject.Inject
 
 class SignUpRepo @Inject
-constructor(
-    private val preferencesHelper: PreferencesHelper
-) {
+constructor() {
     private lateinit var model: AuthResponse
 
     suspend fun postSignUp(body: SignUpBody): DataResource<AuthResponse> {
@@ -50,6 +48,7 @@ constructor(
         addKeyPropertyString(request ,"GenderName", body.genderName.toString())
         addKeyPropertyString(request ,"NationalityName", body.nationalityName.toString())
         addKeyPropertyString(request ,"LivingName", body.livingName.toString())
+
 
         androidHttpTransport.call(
             (Constants.NameSpace + Constants.MethodNames.SignUp.value),

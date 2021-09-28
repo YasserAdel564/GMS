@@ -39,5 +39,7 @@
     <string name="success">تم بنجاح</string>
     <string name="program">برنامج</string>
     <string name="department">قسم</string>
-
+    <string name="empty_email">البريد الالكتروني فارغ</string>
+    <string name="empty_password">حقل كلمة المرور فارغ</string>
+    <string name="empty_field">هذا الحقل فارغ</string>
 </resources>

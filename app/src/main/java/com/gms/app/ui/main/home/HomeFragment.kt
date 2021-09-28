@@ -1,28 +1,24 @@
 package com.gms.app.ui.main.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.gms.app.R
-import com.gms.app.data.storage.remote.model.home.SliderModel
+import com.gms.app.data.storage.remote.model.programs.ProgrammeModel
 import com.gms.app.databinding.HomeFragmentBinding
-import com.gms.app.databinding.MainFragmentBinding
-import com.gms.app.ui.main.programes.ProgramsAdapter
+import com.gms.app.ui.main.programes.ProgrammesAdapter
 import com.gms.app.ui.main.programes.ProgramsVM
-import com.gms.app.utils.TestList
 import com.gms.app.utils.UiStates
 import com.gms.app.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.timerTask
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() ,ProgrammesAdapter.ProgrammeCallback {
 
     lateinit var binding: HomeFragmentBinding
     private val viewModel: HomeVM by viewModels()
@@ -30,7 +26,7 @@ class HomeFragment : Fragment() {
 
     private var timer: Timer = Timer()
     private val sliderAdapter = SliderAdapter()
-    private var adapter: ProgramsAdapter? = null
+    private var adapter: ProgrammesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +49,7 @@ class HomeFragment : Fragment() {
 
 
     private fun setUpRV() {
-        adapter = ProgramsAdapter(requireActivity())
+        adapter = ProgrammesAdapter(requireActivity(),this)
         binding.homeRv.adapter = adapter
     }
 
@@ -141,6 +137,10 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         timer.cancel()
+    }
+
+    override fun programmeClicked(model: ProgrammeModel?) {
+        Log.e("programmeClicked", model?.id.toString())
     }
 
 }

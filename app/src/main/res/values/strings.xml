@@ -37,9 +37,13 @@
     <string name="select_living">Select Your Living</string>
     <string name="required_field">Required Field</string>
     <string name="email_validation">Email is Not Valid</string>
-    <string name="password_mis_match">Password MisMatch</string>
     <string name="password_validation">Password must contain 8 Keys</string>
     <string name="success">Success</string>
     <string name="program">Endodontics</string>
     <string name="department">Surgery</string>
+
+    <string name="empty_email">Email is Empty</string>
+    <string name="empty_field">This Field is Empty</string>
+    <string name="password_mis_match">Password MisMatch</string>
+    <string name="empty_password">Password is Empty</string>
 </resources>

@@ -1,22 +1,24 @@
 package com.gms.app.ui.main.programes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.gms.app.data.storage.remote.model.programs.ProgrammeModel
 import com.gms.app.databinding.ProgramsFragmentBinding
 import com.gms.app.utils.UiStates
 import com.gms.app.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProgramsFragment : Fragment() {
+class ProgramsFragment : Fragment(),ProgrammesAdapter.ProgrammeCallback {
 
     lateinit var binding: ProgramsFragmentBinding
     private val viewModel: ProgramsVM by viewModels()
-    private var adapter: ProgramsAdapter? = null
+    private var adapter: ProgrammesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,7 @@ class ProgramsFragment : Fragment() {
     }
 
     private fun setUpRV() {
-        adapter = ProgramsAdapter(requireActivity())
+        adapter = ProgrammesAdapter(requireActivity(),this)
         binding.programsRv.adapter = adapter
     }
 
@@ -75,5 +77,8 @@ class ProgramsFragment : Fragment() {
         binding.loadingLayout.noConnection.visibility = View.VISIBLE
     }
 
+    override fun programmeClicked(model: ProgrammeModel?) {
+        Log.e("programmeClicked", model?.id.toString())
+    }
 
 }
