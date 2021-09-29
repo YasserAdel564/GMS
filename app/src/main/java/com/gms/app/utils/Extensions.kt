@@ -161,9 +161,6 @@ fun Activity.hideSystemUI() {
 }
 
 
-fun Context.openBrowser(url: String) {
-    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-}
 
 
 fun getImageTempFile(context: Context): File {
@@ -246,3 +243,9 @@ fun soapRequestBuilder(methodName: String, lang: String): SoapObject? {
 }
 fun CharSequence?.isValidEmail() =
     !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun Context.openBrowser(url: String?) {
+    if (url != null && url.isNotEmpty() && url != Constants.Exceptions.Null.value) {
+        this.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
+}

@@ -20,7 +20,8 @@ object Constants {
         Login("GetLogin"),
         GetSliderImages("GetSlices"),
         GetAllPrograms("DetDiplomas"),
-        GetUserData("GetCustomers")
+        GetUserData("GetCustomers"),
+        GetAboutUsData("GetAllData")
     }
 
     enum class ErrorType {
@@ -29,4 +30,7 @@ object Constants {
         UNKNOWN
     }
 
+    enum class Exceptions(val value: String) {
+        Null("anyType{}")
+    }
 }

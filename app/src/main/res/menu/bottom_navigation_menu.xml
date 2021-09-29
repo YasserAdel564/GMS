@@ -17,6 +17,7 @@
         android:title="@string/about_us_label" />
 
     <item
+        android:visible="false"
         android:id="@+id/contact_us_fragment"
         android:icon="@drawable/ic_call_us"
         android:title="@string/contact_us_label" />
