@@ -19,7 +19,8 @@ object Constants {
         SignUp("ADD_New_Customers"),
         Login("GetLogin"),
         GetSliderImages("GetSlices"),
-        GetAllPrograms("DetDiplomas")
+        GetAllPrograms("DetDiplomas"),
+        GetUserData("GetCustomers")
     }
 
     enum class ErrorType {

@@ -36,8 +36,8 @@
         <action
             android:id="@+id/action_login_fragment_to_home_fragment"
             app:destination="@id/main_fragment"
-            app:popUpTo="@id/login_fragment" />
-
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true"/>
 
     </fragment>
 
@@ -79,4 +79,11 @@
         android:name="com.gms.app.ui.main.contactUs.ContactUsFragment"
         android:label="@string/contact_us_label"
         tools:layout="@layout/contact_us_fragment" />
+
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.gms.app.ui.profile.ProfileFragment"
+        android:label="@string/profile_label"
+        tools:layout="@layout/profile_fragment" />
 </navigation>

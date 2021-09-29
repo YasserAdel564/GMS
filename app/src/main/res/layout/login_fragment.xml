@@ -101,6 +101,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="@dimen/dp_10"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="@string/forget_password"
                     android:textColor="@color/purple"
                     android:textSize="16sp"

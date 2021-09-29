@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.ProfileFragment">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/default_toolbar_layout" />
+
+
+        <include
+            android:id="@+id/loading_layout"
+            layout="@layout/loading_view_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/view_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/dp_10">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/dp_10"
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/default_user_image" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/full_name"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/user_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawableEnd="@drawable/ic_pen"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/full_name"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="@string/full_name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/password"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/item_border_focus"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/password_et"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/show_pass_img"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/show_pass_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_10"
+                        android:src="@drawable/ic_pen"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/email"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/user_email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/email"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:text="@string/email"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/address"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/address_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawableEnd="@drawable/ic_pen"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/address"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:text="@string/address"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/phone"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/phone_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/phone"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:text="@string/phone"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/date_of_birth"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/date_ofBirth_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/date_of_birth"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:text="@string/date_of_birth"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/country"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/country_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/country"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:text="@string/country"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/living"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/living_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/item_border_focus"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:enabled="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/living"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:text="@string/living"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/edit_btn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:padding="@dimen/dp_10"
+                    android:text="@string/edit"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:backgroundTint="?attr/colorPrimary"
+                    app:cornerRadius="5dp"
+                    app:rippleColor="@android:color/white" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

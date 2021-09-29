@@ -49,7 +49,6 @@ constructor() {
         addKeyPropertyString(request ,"NationalityName", body.nationalityName.toString())
         addKeyPropertyString(request ,"LivingName", body.livingName.toString())
 
-
         androidHttpTransport.call(
             (Constants.NameSpace + Constants.MethodNames.SignUp.value),
             envelope

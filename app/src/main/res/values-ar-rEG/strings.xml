@@ -42,4 +42,10 @@
     <string name="empty_email">البريد الالكتروني فارغ</string>
     <string name="empty_password">حقل كلمة المرور فارغ</string>
     <string name="empty_field">هذا الحقل فارغ</string>
+    <string name="edit">تعديل</string>
+
+    <string name="country">البلد</string>
+    <string name="living">مكان الإقامه</string>
+    <string name="profile_label">الصفحه الشخصيه</string>
+
 </resources>

@@ -46,4 +46,11 @@
     <string name="empty_field">This Field is Empty</string>
     <string name="password_mis_match">Password MisMatch</string>
     <string name="empty_password">Password is Empty</string>
+    <string name="edit">Edit</string>
+
+    <string name="country">Country</string>
+    <string name="living">Living</string>
+    <string name="profile_label">Profile</string>
+
+
 </resources>
