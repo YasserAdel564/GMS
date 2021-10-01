@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.NetworkUtils
+import com.gms.app.data.storage.local.PreferencesHelper
 import com.gms.app.data.storage.remote.model.auth.CountryModel
 import com.gms.app.data.storage.remote.model.auth.GenderModel
 import com.gms.app.data.storage.remote.model.auth.NationalityModel
@@ -22,7 +23,8 @@ import kotlinx.coroutines.launch
 class SignUpVM @ViewModelInject
 constructor(
     storedDataRepo: StoredDataRepo,
-    val signUpRepo: SignUpRepo
+    private val signUpRepo: SignUpRepo,
+    private val preferencesHelper: PreferencesHelper
 ) : BaseViewModel() {
 
     var storedCountries: LiveData<List<CountryModel>> = storedDataRepo.getStoredCountries()
@@ -65,6 +67,8 @@ constructor(
                     when {
                         key > 0 -> {
                             _uiState.value = Event(UiStates.Success)
+                            preferencesHelper.userId = key.toString()
+                            preferencesHelper.isLogin = true
                         }
                         key == (-4) -> _uiState.value = Event(UiStates.Empty)
                         else -> _uiState.value = Event(UiStates.Error)

@@ -110,8 +110,8 @@
 
                     <ImageView
                         android:id="@+id/facebook_img"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp_10"
                         android:layout_marginVertical="@dimen/dp_10"
@@ -120,8 +120,8 @@
 
                     <ImageView
                         android:id="@+id/twitter_img"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp_10"
                         android:layout_marginVertical="@dimen/dp_10"
@@ -130,8 +130,8 @@
 
                     <ImageView
                         android:id="@+id/linkedIn_img"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp_10"
                         android:layout_marginVertical="@dimen/dp_10"
@@ -140,8 +140,8 @@
 
                     <ImageView
                         android:id="@+id/insta_img"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp_10"
                         android:layout_marginVertical="@dimen/dp_10"
@@ -150,8 +150,8 @@
 
                     <ImageView
                         android:id="@+id/map_img"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:visibility="gone"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp_10"

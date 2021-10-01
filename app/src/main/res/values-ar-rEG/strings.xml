@@ -47,5 +47,9 @@
     <string name="country">البلد</string>
     <string name="living">مكان الإقامه</string>
     <string name="profile_label">الصفحه الشخصيه</string>
-
+    <string name="logout">تسجيل الخروج</string>
+    <string name="ok">نعم</string>
+    <string name="cancel">لا</string>
+    <string name="alert">تنبيه!</string>
+    <string name="want_to_logout">هل تريد تسجيل الخروح ؟</string>
 </resources>

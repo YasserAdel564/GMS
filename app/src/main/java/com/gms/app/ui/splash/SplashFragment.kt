@@ -58,6 +58,11 @@ class SplashFragment : Fragment() {
         timer!!.start()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        timer?.cancel()
+    }
+
     override fun onStop() {
         super.onStop()
         timer?.cancel()

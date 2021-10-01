@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.gms.app.R
 import com.gms.app.data.storage.remote.model.programs.ProgrammeModel
 import com.gms.app.databinding.HomeFragmentBinding
 import com.gms.app.ui.main.programes.ProgrammesAdapter
@@ -15,6 +19,7 @@ import com.gms.app.utils.UiStates
 import com.gms.app.utils.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import javax.inject.Inject
 import kotlin.concurrent.timerTask
 
 @AndroidEntryPoint
@@ -27,6 +32,7 @@ class HomeFragment : Fragment() ,ProgrammesAdapter.ProgrammeCallback {
     private var timer: Timer = Timer()
     private val sliderAdapter = SliderAdapter()
     private var adapter: ProgrammesAdapter? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

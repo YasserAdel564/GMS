@@ -51,6 +51,10 @@
     <string name="country">Country</string>
     <string name="living">Living</string>
     <string name="profile_label">Profile</string>
-
+    <string name="logout">Logout</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="alert">Alert !</string>
+    <string name="want_to_logout">You Want to Logout ?</string>
 
 </resources>
