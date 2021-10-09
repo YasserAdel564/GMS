@@ -5,6 +5,9 @@ object Constants {
     const val BaseUrl = "http://services.gmsformedical.net/Service.asmx"
     const val ImagesUrl = "http://gmsformedical.com/images/"
     const val NameSpace = "http://tempuri.org/"
+    const val RC_PERMISSION_STORAGE_CAMERA = 100
+    const val RC_CAPTURE_IMAGE = 1000
+    const val RC_IMAGES = 112
 
     enum class Language(val value: String) {
         ARABIC("AR"),
@@ -21,7 +24,8 @@ object Constants {
         GetSliderImages("GetSlices"),
         GetAllPrograms("DetDiplomas"),
         GetUserData("GetCustomers"),
-        GetAboutUsData("GetAllData")
+        GetAboutUsData("GetAllData"),
+        UploadImage("UploadProfileImage"),
     }
 
     enum class ErrorType {

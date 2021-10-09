@@ -52,4 +52,9 @@
     <string name="cancel">لا</string>
     <string name="alert">تنبيه!</string>
     <string name="want_to_logout">هل تريد تسجيل الخروح ؟</string>
+    <string name="permissions_needed">يحتاج التطبيق لبعض الاوذونات لرفع صوره</string>
+    <string name="take_a_picture">التقاط صورة</string>
+    <string name="open_gallery">اختر من المعرض</string>
+    <string name="error_select_image">خطأ في اختيار الصوره</string>
+    <string name="error_upload_image">خطأ في رفع الصوره</string>
 </resources>

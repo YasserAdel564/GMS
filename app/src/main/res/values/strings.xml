@@ -56,5 +56,9 @@
     <string name="cancel">Cancel</string>
     <string name="alert">Alert !</string>
     <string name="want_to_logout">You Want to Logout ?</string>
-
+    <string name="permissions_needed">App needs some permissions to Upload Image</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="open_gallery">Choose from gallery</string>
+    <string name="error_select_image">Error Select Image</string>
+    <string name="error_upload_image">Error in Uploading Image</string>
 </resources>

@@ -9,20 +9,30 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.database.Cursor
+import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Environment
+import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.text.InputType
+import android.util.Base64
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.fragment.app.Fragment
 import com.gms.app.R
 import com.gms.app.ui.MainActivity
+import com.gms.app.utils.Constants.RC_CAPTURE_IMAGE
+import com.gms.app.utils.Constants.RC_IMAGES
 import com.google.android.material.snackbar.Snackbar
 import org.ksoap2.SoapEnvelope
 import org.ksoap2.serialization.PropertyInfo
@@ -32,6 +42,7 @@ import org.ksoap2.transport.HttpTransportSE
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -128,8 +139,6 @@ fun getRandomColor(): Int {
 }
 
 
-
-
 fun Activity.hideKeyboard() {
     var view: View? = this.currentFocus
     if (view == null) {
@@ -159,8 +168,6 @@ fun Activity.hideSystemUI() {
             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 }
-
-
 
 
 fun getImageTempFile(context: Context): File {
@@ -226,7 +233,7 @@ fun soapRequestBuilder(methodName: String, lang: String): SoapObject? {
     else null
 }
 
- fun addKeyPropertyString(request: SoapObject, key: String, value: String) {
+fun addKeyPropertyString(request: SoapObject, key: String, value: String) {
     val property = PropertyInfo()
     property.setName(key)
     property.value = value
@@ -234,13 +241,14 @@ fun soapRequestBuilder(methodName: String, lang: String): SoapObject? {
     request.addProperty(property)
 }
 
- fun addKeyPropertyInt(request: SoapObject, key: String, value: Int) {
+fun addKeyPropertyInt(request: SoapObject, key: String, value: Int) {
     val property = PropertyInfo()
     property.setName(key)
     property.value = value
     property.setType(Int::class.java)
     request.addProperty(property)
 }
+
 fun CharSequence?.isValidEmail() =
     !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
@@ -248,4 +256,60 @@ fun Context.openBrowser(url: String?) {
     if (url != null && url.isNotEmpty() && url != Constants.Exceptions.Null.value) {
         this.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
+}
+
+fun Context.encodeImage(bm: Bitmap): String {
+    val baos = ByteArrayOutputStream()
+    bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val b = baos.toByteArray()
+    return Base64.encodeToString(b, Base64.DEFAULT)
+}
+fun Fragment.openCamera(): Uri? {
+    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+    val photoURI = FileProvider.getUriForFile(
+        requireContext(),
+        "${requireContext().packageName}.provider",
+        getImageTempFile(requireContext())
+    )
+    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+    startActivityForResult(intent, RC_CAPTURE_IMAGE)
+    return photoURI
+}
+
+fun Fragment.openGallery(allowMultiple: Boolean) {
+    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, allowMultiple)
+    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    intent.type = "image/*"
+    startActivityForResult(intent, RC_IMAGES)
+}
+fun Context.getFilePathForN(
+    uri: Uri
+): String? {
+    val returnCursor: Cursor? =
+        this.contentResolver.query(uri, null, null, null, null)
+    val nameIndex: Int = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+    val sizeIndex: Int = returnCursor.getColumnIndex(OpenableColumns.SIZE)
+    returnCursor.moveToFirst()
+    val name: String = returnCursor.getString(nameIndex)
+    val size = returnCursor.getLong(sizeIndex).toString()
+    val file = File(this.filesDir, name)
+    try {
+        val inputStream = this.contentResolver.openInputStream(uri)
+        val outputStream = FileOutputStream(file)
+        var read = 0
+        val maxBufferSize = 1 * 1024 * 1024
+        val bytesAvailable = inputStream!!.available()
+        val bufferSize = Math.min(bytesAvailable, maxBufferSize)
+        val buffers = ByteArray(bufferSize)
+        while (inputStream.read(buffers).also { read = it } != -1) {
+            outputStream.write(buffers, 0, read)
+        }
+        inputStream.close()
+        outputStream.close()
+    } catch (e: Exception) {
+    }
+    return file.path
 }

@@ -1,10 +1,22 @@
 package com.gms.app.ui.profile
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.opengl.ETC1.encodeImage
 import android.os.Bundle
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -15,18 +27,27 @@ import com.gms.app.R
 import com.gms.app.data.storage.local.PreferencesHelper
 import com.gms.app.data.storage.remote.model.profile.UserDataModel
 import com.gms.app.databinding.ProfileFragmentBinding
+import com.gms.app.repo.profile.UploadImageRepo
 import com.gms.app.ui.main.home.HomeVM
-import com.gms.app.utils.Constants
-import com.gms.app.utils.UiStates
-import com.gms.app.utils.observeEvent
+import com.gms.app.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     lateinit var binding: ProfileFragmentBinding
     private val viewModel: ProfileVM by viewModels()
+    private val uploadImageVM: UploadImageVM by viewModels()
+
+    private var dialogBuilder: AlertDialog.Builder? = null
+    private var alertDialog: AlertDialog? = null
+    private var cameraImageUri: Uri? = null
 
     @Inject
     lateinit var preferencesHelper: PreferencesHelper
@@ -42,6 +63,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.uiState.observeEvent(viewLifecycleOwner) { onResponse(it) }
+        uploadImageVM.uiState.observeEvent(viewLifecycleOwner, { onImageUploaded(it) })
         setUpToolbar()
         setUpViewsClicks()
         viewModel.getUserData()
@@ -54,6 +76,7 @@ class ProfileFragment : Fragment() {
 
     private fun setUpViewsClicks() {
         binding.toolbar.backImgToolbar.setOnClickListener { findNavController().navigateUp() }
+        binding.profileImg.setOnClickListener { chooseImages() }
     }
 
     private fun fillData() {
@@ -80,6 +103,81 @@ class ProfileFragment : Fragment() {
 
     }
 
+    @AfterPermissionGranted(Constants.RC_PERMISSION_STORAGE_CAMERA)
+    private fun chooseImages() {
+        val perms = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        if (EasyPermissions.hasPermissions(requireActivity(), *perms)) {
+            showChooseDialog()
+        } else {
+            EasyPermissions.requestPermissions(
+                this, resources.getString(R.string.permissions_needed),
+                Constants.RC_PERMISSION_STORAGE_CAMERA, *perms
+            )
+        }
+    }
+
+    private fun showChooseDialog() {
+        dialogBuilder = AlertDialog.Builder(requireActivity())
+        val layoutView = layoutInflater.inflate(R.layout.gallery_camera_choose_view, null)
+        val cameraBtn = layoutView.findViewById<View>(R.id.camera_btn)
+        val galleryBtn = layoutView.findViewById<View>(R.id.gallery_btn)
+        dialogBuilder!!.setView(layoutView)
+        alertDialog = dialogBuilder!!.create()
+        alertDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog!!.show()
+        cameraBtn.setOnClickListener {
+            cameraImageUri = openCamera()
+            alertDialog!!.dismiss()
+        }
+        galleryBtn.setOnClickListener {
+            openGallery(false)
+            alertDialog!!.dismiss()
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constants.RC_CAPTURE_IMAGE -> {
+                    cameraImageUri?.let {
+                        onImageSelected(it)
+                    }
+                }
+                Constants.RC_IMAGES -> {
+                    val uri = data?.data
+                    when {
+                        uri != null -> onImageSelected(uri)
+                        else -> Toast.makeText(
+                            activity,
+                            getString(R.string.error_general),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    private fun onImageSelected(imageUri: Uri) {
+        val path = requireContext().getFilePathForN(imageUri)
+        if (path != null) {
+            Glide.with(requireContext()).load(path).into(binding.profileImg)
+            val bm = BitmapFactory.decodeStream(FileInputStream(File(path)))
+            uploadImageVM.imageByte = requireActivity().encodeImage(bm)
+            uploadImageVM.imageName = path.substring(path.lastIndexOf("/") + 1);
+            uploadImageVM.uploadImage()
+        } else
+            activity?.toast(getString(R.string.error_select_image))
+    }
+
+
     private fun onResponse(states: UiStates?) {
         when (states) {
             UiStates.Loading -> {
@@ -101,6 +199,37 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun onImageUploaded(states: UiStates?) {
+        when (states) {
+            UiStates.Loading -> {
+                onLoading()
+            }
+            UiStates.Success -> {
+                onSuccess()
+            }
+            UiStates.Error -> {
+                activity?.snackBar(
+                    requireActivity().resources.getString(R.string.error_upload_image),
+                    binding.viewRoot
+                )
+                viewInputs()
+            }
+            UiStates.NotFound -> {
+                activity?.snackBar(
+                    requireActivity().resources.getString(R.string.error_upload_image),
+                    binding.viewRoot
+                )
+                viewInputs()
+            }
+        }
+    }
+
+    private fun onSuccess() {
+        activity?.snackBar(requireActivity().getString(R.string.success), binding.viewRoot)
+        requireActivity().hideKeyboard()
+        viewModel.getUserData()
+    }
+
     private fun onLoading() {
         binding.viewContainer.visibility = View.GONE
         binding.loadingLayout.root.visibility = View.VISIBLE
@@ -118,10 +247,27 @@ class ProfileFragment : Fragment() {
         binding.loadingLayout.loading.visibility = View.GONE
         binding.loadingLayout.noConnection.visibility = View.VISIBLE
     }
+
     private fun onNotFound() {
         binding.viewContainer.visibility = View.GONE
         binding.loadingLayout.root.visibility = View.VISIBLE
         binding.loadingLayout.loading.visibility = View.GONE
         binding.loadingLayout.error.visibility = View.VISIBLE
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        activity?.snackBar(resources.getString(R.string.permissions_needed), binding.viewRoot)
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 }
