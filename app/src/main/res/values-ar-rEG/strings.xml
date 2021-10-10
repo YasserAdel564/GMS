@@ -47,6 +47,8 @@
     <string name="country">البلد</string>
     <string name="living">مكان الإقامه</string>
     <string name="profile_label">الصفحه الشخصيه</string>
+    <string name="programme_detils">تفاصيل الدوره</string>
+
     <string name="logout">تسجيل الخروج</string>
     <string name="ok">نعم</string>
     <string name="cancel">لا</string>
@@ -57,4 +59,7 @@
     <string name="open_gallery">اختر من المعرض</string>
     <string name="error_select_image">خطأ في اختيار الصوره</string>
     <string name="error_upload_image">خطأ في رفع الصوره</string>
+    <string name="english">English</string>
+    <string name="arabic">العربيه</string>
+
 </resources>

@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import androidx.navigation.fragment.findNavController
 import com.gms.app.R
 import com.gms.app.data.storage.remote.model.programs.ProgrammeModel
 import com.gms.app.databinding.HomeFragmentBinding
+import com.gms.app.ui.main.MainVM
 import com.gms.app.ui.main.programes.ProgrammesAdapter
 import com.gms.app.ui.main.programes.ProgramsVM
 import com.gms.app.utils.UiStates
@@ -27,6 +31,7 @@ class HomeFragment : Fragment() ,ProgrammesAdapter.ProgrammeCallback {
 
     lateinit var binding: HomeFragmentBinding
     private val viewModel: HomeVM by viewModels()
+    private val mainVM: MainVM by activityViewModels()
     private val programsVM: ProgramsVM by viewModels()
 
     private var timer: Timer = Timer()
@@ -146,7 +151,10 @@ class HomeFragment : Fragment() ,ProgrammesAdapter.ProgrammeCallback {
     }
 
     override fun programmeClicked(model: ProgrammeModel?) {
-        Log.e("programmeClicked", model?.id.toString())
+        mainVM.setProgrammeId(model?.id!!)
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+            .navigate(R.id.programme_details_fragment)
+
     }
 
 }

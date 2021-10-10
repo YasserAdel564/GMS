@@ -61,4 +61,9 @@
     <string name="open_gallery">Choose from gallery</string>
     <string name="error_select_image">Error Select Image</string>
     <string name="error_upload_image">Error in Uploading Image</string>
+    <string name="programme_detils">Programme Details</string>
+    <string name="english">English</string>
+    <string name="arabic">العربيه</string>
+
+
 </resources>

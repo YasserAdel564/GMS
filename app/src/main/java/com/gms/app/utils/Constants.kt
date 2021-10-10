@@ -25,6 +25,7 @@ object Constants {
         GetAllPrograms("DetDiplomas"),
         GetUserData("GetCustomers"),
         GetAboutUsData("GetAllData"),
+        GetProgrammeDetails("GetDiplomaDetails"),
         UploadImage("UploadProfileImage"),
     }
 

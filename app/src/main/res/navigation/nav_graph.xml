@@ -63,7 +63,10 @@
         android:id="@+id/home_fragment"
         android:name="com.gms.app.ui.main.home.HomeFragment"
         android:label="@string/home_label"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+
+
+    </fragment>
 
 
     <fragment
@@ -92,4 +95,11 @@
         android:name="com.gms.app.ui.profile.ProfileFragment"
         android:label="@string/profile_label"
         tools:layout="@layout/profile_fragment" />
+
+
+    <fragment
+        android:id="@+id/programme_details_fragment"
+        android:name="com.gms.app.ui.main.programes.programmeDetails.ProgrammeDetailsFragment"
+        android:label="@string/programme_detils"
+        tools:layout="@layout/programme_details_fragment" />
 </navigation>
