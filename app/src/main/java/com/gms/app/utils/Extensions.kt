@@ -27,6 +27,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.core.text.HtmlCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.fragment.app.Fragment
 import com.gms.app.R
@@ -264,6 +265,7 @@ fun Context.encodeImage(bm: Bitmap): String {
     val b = baos.toByteArray()
     return Base64.encodeToString(b, Base64.DEFAULT)
 }
+
 fun Fragment.openCamera(): Uri? {
     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
     val photoURI = FileProvider.getUriForFile(
@@ -285,6 +287,7 @@ fun Fragment.openGallery(allowMultiple: Boolean) {
     intent.type = "image/*"
     startActivityForResult(intent, RC_IMAGES)
 }
+
 fun Context.getFilePathForN(
     uri: Uri
 ): String? {
@@ -312,4 +315,11 @@ fun Context.getFilePathForN(
     } catch (e: Exception) {
     }
     return file.path
+}
+
+fun getStringFromHtml(htmlText: String): String {
+    return HtmlCompat.fromHtml(
+        htmlText,
+        HtmlCompat.FROM_HTML_MODE_LEGACY
+    ).toString()
 }

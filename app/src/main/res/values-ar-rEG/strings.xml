@@ -8,6 +8,7 @@
     <string name="programs_label">البرامج</string>
     <string name="contact_us_label">تواصل معنا</string>
     <string name="about_us_label">من نحن</string>
+    <string name="my_programmes_label">دوراتي</string>
     <string name="forget_password"><u>استعادة كلمة المرور؟</u></string>
     <string name="error_general">حدث خطأ ما</string>
     <string name="no_Connection">لايوجد إتصال بالانترنت</string>
@@ -61,5 +62,9 @@
     <string name="error_upload_image">خطأ في رفع الصوره</string>
     <string name="english">English</string>
     <string name="arabic">العربيه</string>
-
+    <string name="select_period">اختر فتره للدبلومه</string>
+    <string name="add_programme">حجز الدبلومه</string>
+    <string name="should_login">يجب تسجيل الدخول اولا</string>
+    <string name="hours">ساعه</string>
+    <string name="sets">مقعد</string>
 </resources>

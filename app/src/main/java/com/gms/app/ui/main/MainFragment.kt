@@ -56,7 +56,6 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         setUpToolbar(requireActivity().resources.getString(R.string.app_name))
         onViewsClicks()
         setUpNavDrawer()
-        //   onBottomNavigationClicked()
     }
 
     private fun setUpNavDrawer() {
@@ -67,12 +66,14 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             binding.navViewHome.menu.findItem(R.id.auth_fragment).title =
                 requireActivity().getString(R.string.logout)
             binding.navViewHome.menu.findItem(R.id.profile_fragment).isVisible = true
+            binding.navViewHome.menu.findItem(R.id.myProgrammes_fragment).isVisible = true
         } else {
             Glide.with(requireActivity()).load(R.drawable.default_user_image).centerInside()
                 .into(img)
             text.text = requireActivity().getString(R.string.guest)
             binding.navViewHome.menu.findItem(R.id.auth_fragment).title = requireActivity().getString(R.string.login_label)
             binding.navViewHome.menu.findItem(R.id.profile_fragment).isVisible = false
+            binding.navViewHome.menu.findItem(R.id.myProgrammes_fragment).isVisible = false
         }
 
 
@@ -108,17 +109,6 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         NavigationUI.setupWithNavController(binding.bottomNavigationHome, navController)
     }
 
-    private fun onBottomNavigationClicked() {
-        binding.bottomNavigationHome.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home_fragment -> setUpToolbar(requireActivity().resources.getString(R.string.home_label))
-                R.id.programs_fragment -> setUpToolbar(requireActivity().resources.getString(R.string.programs_label))
-                R.id.about_us_fragment -> setUpToolbar(requireActivity().resources.getString(R.string.about_us_label))
-                R.id.contact_us_fragment -> setUpToolbar(requireActivity().resources.getString(R.string.contact_us_label))
-            }
-            return@setOnItemSelectedListener true
-        }
-    }
 
     private fun onViewsClicks() {
         binding.toolbar.menuImgToolbar.setOnClickListener { openDrawer() }

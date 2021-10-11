@@ -27,6 +27,9 @@ object Constants {
         GetAboutUsData("GetAllData"),
         GetProgrammeDetails("GetDiplomaDetails"),
         UploadImage("UploadProfileImage"),
+        GetProgrammePeriods("GetPeriods"),
+        AddCustomerProgramme("ADD_Customers_Diplomas"),
+        GetCustomerProgramme("GetCustomers_Diplomas")
     }
 
     enum class ErrorType {

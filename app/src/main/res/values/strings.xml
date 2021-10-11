@@ -8,6 +8,7 @@
     <string name="programs_label">Programs</string>
     <string name="contact_us_label">Contact Us</string>
     <string name="about_us_label">About Us</string>
+    <string name="my_programmes_label">My Programmes</string>
 
     <string name="forget_password"><u>Forget Password?</u></string>
     <string name="error_general">Error,Try Again</string>
@@ -64,6 +65,11 @@
     <string name="programme_detils">Programme Details</string>
     <string name="english">English</string>
     <string name="arabic">العربيه</string>
+    <string name="select_period">Select Period</string>
+    <string name="add_programme">Reserve the Programme</string>
+    <string name="should_login">You Should Login , Firstly</string>
 
+    <string name="hours">Hours</string>
+    <string name="sets">Sets</string>
 
 </resources>

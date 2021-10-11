@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/view_root"
         tools:context=".ui.main.programes.programmeDetails.ProgrammeDetailsFragment">
 
         <include
@@ -28,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scrollbars="none"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,25 +40,92 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                <com.jem.fliptabs.FlipTab-->
-<!--                    android:id="@+id/favTeamsTabs"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginHorizontal="5dp"-->
-<!--                    android:layoutDirection="ltr"-->
-<!--                    app:flipAnimationDuration="400"-->
-<!--                    app:highlightColor="?attr/colorPrimaryDark"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
-<!--                    app:overallColor="@color/purple"-->
-<!--                    app:startingTab="right"-->
-<!--                    app:textColor="@color/textColor"-->
-<!--                    app:wobbleAngle="3"-->
-<!--                    app:wobbleReturnAnimationDuration="200"-->
-<!--                    tools:ignore="MissingConstraints"-->
-<!--                    tools:leftTabText="@string/english"-->
-<!--                    tools:rightTabText="@string/arabic" />-->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/programme_img"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_10"
+                    tools:src="@drawable/app_logo" />
+
+                <TextView
+                    android:id="@+id/programme_title_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/programme_summary_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/programme_details1_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/programme_details2_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_10"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/app_name" />
+
+                <Spinner
+                    android:id="@+id/periods_spinner"
+                    style="@style/spinnerStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:gravity="start"
+                    android:paddingHorizontal="8dp"
+                    android:spinnerMode="dialog"
+                    android:textAlignment="gravity" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_programme_btn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="@dimen/dp_10"
+                    android:padding="@dimen/dp_10"
+                    android:text="@string/add_programme"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:backgroundTint="?attr/colorPrimary"
+                    app:cornerRadius="5dp"
+                    android:visibility="gone"
+                    app:rippleColor="@android:color/white" />
+
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
