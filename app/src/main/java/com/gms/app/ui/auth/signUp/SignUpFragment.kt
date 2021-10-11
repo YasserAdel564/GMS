@@ -353,6 +353,7 @@ class SignUpFragment : Fragment() {
                         signUpVM.message,
                         binding.viewRoot
                     )
+                viewInputs()
             }
             UiStates.Error -> {
                 if (signUpVM.message != null)

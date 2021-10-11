@@ -9,6 +9,7 @@
     <string name="contact_us_label">Contact Us</string>
     <string name="about_us_label">About Us</string>
     <string name="my_programmes_label">My Programmes</string>
+    <string name="videos_label">Videos</string>
 
     <string name="forget_password"><u>Forget Password?</u></string>
     <string name="error_general">Error,Try Again</string>

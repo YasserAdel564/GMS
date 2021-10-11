@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/exam_preparation_item"
+    android:id="@+id/video_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -17,12 +17,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorCardBackground"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/video_img"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            tools:src="@drawable/app_logo"/>
 
         <TextView
-            android:id="@+id/programme_period_txt"
+            android:id="@+id/video_summary_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -38,39 +42,7 @@
             tools:text="@string/app_name" />
 
         <TextView
-            android:id="@+id/programme_date_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/textColor"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/app_name" />
-
-        <TextView
-            android:id="@+id/programme_hours_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/textColor"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/app_name" />
-
-        <TextView
-            android:id="@+id/programme_sets_txt"
+            android:id="@+id/video_date_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -87,7 +59,7 @@
 
 
         <TextView
-            android:id="@+id/programme_title_txt"
+            android:id="@+id/video_title_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/purple"

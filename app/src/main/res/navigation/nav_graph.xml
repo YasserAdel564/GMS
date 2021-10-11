@@ -108,4 +108,10 @@
         android:name="com.gms.app.ui.myProgrammes.MyProgrammesFragment"
         android:label="@string/my_programmes_label"
         tools:layout="@layout/my_programmes_fragment" />
+
+    <fragment
+        android:id="@+id/videos_fragment"
+        android:name="com.gms.app.ui.videos.VideosFragment"
+        android:label="@string/videos_label"
+        tools:layout="@layout/videos_fragment" />
 </navigation>

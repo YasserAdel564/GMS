@@ -67,6 +67,7 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
                 requireActivity().getString(R.string.logout)
             binding.navViewHome.menu.findItem(R.id.profile_fragment).isVisible = true
             binding.navViewHome.menu.findItem(R.id.myProgrammes_fragment).isVisible = true
+            binding.navViewHome.menu.findItem(R.id.videos_fragment).isVisible = true
         } else {
             Glide.with(requireActivity()).load(R.drawable.default_user_image).centerInside()
                 .into(img)
@@ -74,6 +75,7 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             binding.navViewHome.menu.findItem(R.id.auth_fragment).title = requireActivity().getString(R.string.login_label)
             binding.navViewHome.menu.findItem(R.id.profile_fragment).isVisible = false
             binding.navViewHome.menu.findItem(R.id.myProgrammes_fragment).isVisible = false
+            binding.navViewHome.menu.findItem(R.id.videos_fragment).isVisible = false
         }
 
 

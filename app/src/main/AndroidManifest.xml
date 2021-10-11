@@ -34,6 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:exported="true"
+            android:name=".ui.player.ExoPlayer"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/playerTheme" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

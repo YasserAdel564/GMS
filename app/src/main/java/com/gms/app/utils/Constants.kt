@@ -29,7 +29,8 @@ object Constants {
         UploadImage("UploadProfileImage"),
         GetProgrammePeriods("GetPeriods"),
         AddCustomerProgramme("ADD_Customers_Diplomas"),
-        GetCustomerProgramme("GetCustomers_Diplomas")
+        GetCustomerProgramme("GetCustomers_Diplomas"),
+        GetVideos("GetUserVideos")
     }
 
     enum class ErrorType {
