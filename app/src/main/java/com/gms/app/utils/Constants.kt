@@ -31,7 +31,8 @@ object Constants {
         AddCustomerProgramme("ADD_Customers_Diplomas"),
         GetCustomerProgramme("GetCustomers_Diplomas"),
         GetVideos("GetUserVideos"),
-        ContactUs("ADD_New_Callers")
+        ContactUs("ADD_New_Callers"),
+        UpdateProfile("Update_New_Customers")
     }
 
     enum class ErrorType {

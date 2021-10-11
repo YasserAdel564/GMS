@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.gms.app.R
 import com.gms.app.data.storage.local.PreferencesHelper
+import com.gms.app.data.storage.remote.model.profile.ProfileBody
 import com.gms.app.data.storage.remote.model.profile.UserDataModel
 import com.gms.app.databinding.ProfileFragmentBinding
 import com.gms.app.repo.profile.UploadImageRepo
@@ -43,6 +44,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     lateinit var binding: ProfileFragmentBinding
     private val viewModel: ProfileVM by viewModels()
+    private val updateProfileVM: UpdateProfileVM by viewModels()
     private val uploadImageVM: UploadImageVM by viewModels()
 
     private var dialogBuilder: AlertDialog.Builder? = null
@@ -63,6 +65,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.uiState.observeEvent(viewLifecycleOwner) { onResponse(it) }
+        updateProfileVM.uiState.observeEvent(viewLifecycleOwner) { onUpdateResponse(it) }
         uploadImageVM.uiState.observeEvent(viewLifecycleOwner, { onImageUploaded(it) })
         setUpToolbar()
         setUpViewsClicks()
@@ -77,6 +80,31 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private fun setUpViewsClicks() {
         binding.toolbar.backImgToolbar.setOnClickListener { findNavController().navigateUp() }
         binding.profileImg.setOnClickListener { chooseImages() }
+        binding.editBtn.setOnClickListener { validation() }
+    }
+
+    private fun validation() {
+        val userDate = viewModel.userDataModel
+        val body = ProfileBody(
+            userId = preferencesHelper.userId,
+            name = userDate?.fullName!!,
+            birthDate = userDate.dateOfBirth,
+            email = userDate.email,
+            phone = userDate.phone,
+            contact = userDate.contact,
+            genderId = userDate.genderId,
+            nationalityId = userDate.nationalityId,
+            countryId = userDate.countryId,
+            livingId = userDate.livingId,
+            education = userDate.education,
+            university = userDate.university,
+            graduationYear = userDate.graduationYear.toInt(),
+            address = userDate.address,
+            note = userDate.note,
+            password = userDate.password,
+            img = userDate.picture,
+        )
+        updateProfileVM.updateProfile(body)
     }
 
     private fun fillData() {
@@ -188,6 +216,27 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 viewInputs()
             }
             UiStates.Empty -> {
+                viewInputs()
+            }
+            UiStates.NotFound -> {
+                onNotFound()
+            }
+            UiStates.NoConnection -> {
+                onNoConnection()
+            }
+        }
+    }
+
+    private fun onUpdateResponse(states: UiStates?) {
+        when (states) {
+            UiStates.Loading -> {
+                onLoading()
+            }
+            UiStates.Success -> {
+                onSuccess()
+            }
+            UiStates.Error -> {
+                activity?.snackBar(updateProfileVM.message, binding.viewRoot)
                 viewInputs()
             }
             UiStates.NotFound -> {
