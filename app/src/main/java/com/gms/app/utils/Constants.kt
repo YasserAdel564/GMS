@@ -30,7 +30,8 @@ object Constants {
         GetProgrammePeriods("GetPeriods"),
         AddCustomerProgramme("ADD_Customers_Diplomas"),
         GetCustomerProgramme("GetCustomers_Diplomas"),
-        GetVideos("GetUserVideos")
+        GetVideos("GetUserVideos"),
+        ContactUs("ADD_New_Callers")
     }
 
     enum class ErrorType {

@@ -16,7 +16,6 @@
         android:icon="@drawable/ic_videos"
         android:title="@string/videos_label" />
     <item
-        android:visible="false"
         android:id="@+id/contact_us_fragment"
         android:icon="@drawable/ic_call_us"
         android:title="@string/contact_us_label" />

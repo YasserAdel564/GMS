@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/contact_us_fragment"
-        android:name="com.gms.app.ui.main.contactUs.ContactUsFragment"
+        android:name="com.gms.app.ui.contactUs.ContactUsFragment"
         android:label="@string/contact_us_label"
         tools:layout="@layout/contact_us_fragment" />
 

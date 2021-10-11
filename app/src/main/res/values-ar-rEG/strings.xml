@@ -69,4 +69,6 @@
     <string name="should_login">يجب تسجيل الدخول اولا</string>
     <string name="hours">ساعه</string>
     <string name="sets">مقعد</string>
+    <string name="title">العنوان</string>
+    <string name="message">الرساله</string>
 </resources>
