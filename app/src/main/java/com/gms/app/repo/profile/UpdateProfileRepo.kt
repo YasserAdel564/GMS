@@ -54,12 +54,17 @@ constructor() {
         )
         val resultsString = envelope.response as SoapObject
         val object1 = resultsString.getProperty(1) as SoapObject
-
         if (object1.propertyCount > 0) {
             val tables = object1.getProperty(0) as SoapObject
             val soapObject = tables.getProperty(0) as SoapObject
-            val id: String = soapObject.getProperty("ID").toString()
-            val message: String = soapObject.getProperty("MS").toString()
+            val id: String = if (soapObject.hasProperty("ID"))
+                soapObject.getProperty("ID").toString()
+            else
+                "1"
+            val message: String = if (soapObject.hasProperty("MS"))
+                soapObject.getProperty("MS").toString()
+            else
+                "Done"
             model = AuthResponse(id = id.toInt(), message = message)
         }
         return model

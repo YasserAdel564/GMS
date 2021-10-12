@@ -11,6 +11,7 @@ import android.net.Uri
 import android.opengl.ETC1.encodeImage
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -85,12 +86,47 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun validation() {
         val userDate = viewModel.userDataModel
+        val userName = binding.userNameEt.text.trim().toString()
+        val password = binding.passwordEt.text.trim().toString()
+        val email = binding.userEmailEt.text.trim().toString()
+        val address = binding.addressEt.text.trim().toString()
+        val phone = binding.phoneEt.text.trim().toString()
+
+
+        if (userName.isBlank()) {
+            binding.userNameEt.error = getString(R.string.required_field)
+            return
+        }
+        if (password.isBlank()) {
+            binding.passwordEt.error = getString(R.string.required_field)
+            return
+        }
+        if (password.length < 8) {
+            binding.passwordEt.error = getString(R.string.password_validation)
+            return
+        }
+        if (email.isBlank()) {
+            binding.userEmailEt.error = getString(R.string.required_field)
+            return
+        }
+        if (!email.isValidEmail()) {
+            binding.userEmailEt.error = getString(R.string.email_validation)
+            return
+        }
+        if (address.isBlank()) {
+            binding.addressEt.error = getString(R.string.required_field)
+            return
+        }
+        if (phone.isBlank()) {
+            binding.phoneEt.error = getString(R.string.required_field)
+            return
+        }
         val body = ProfileBody(
             userId = preferencesHelper.userId,
-            name = userDate?.fullName!!,
-            birthDate = userDate.dateOfBirth,
-            email = userDate.email,
-            phone = userDate.phone,
+            name = userName,
+            birthDate = userDate?.dateOfBirth!!,
+            email = email,
+            phone = phone,
             contact = userDate.contact,
             genderId = userDate.genderId,
             nationalityId = userDate.nationalityId,
@@ -99,10 +135,10 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             education = userDate.education,
             university = userDate.university,
             graduationYear = userDate.graduationYear.toInt(),
-            address = userDate.address,
+            address = address,
             note = userDate.note,
-            password = userDate.password,
-            img = userDate.picture,
+            password = password,
+            img = (if (uploadImageVM.imageName == null) userDate.picture else uploadImageVM.imageName)!!,
         )
         updateProfileVM.updateProfile(body)
     }
@@ -116,7 +152,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH)
 
-            Glide.with(requireActivity()).load(Constants.ImagesUrl + model.phone)
+            Glide.with(requireActivity()).load(Constants.ImagesUrl + model.picture)
                 .apply(options)
                 .into(binding.profileImg)
             binding.userNameEt.setText(model.fullName)
@@ -199,7 +235,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             Glide.with(requireContext()).load(path).into(binding.profileImg)
             val bm = BitmapFactory.decodeStream(FileInputStream(File(path)))
             uploadImageVM.imageByte = requireActivity().encodeImage(bm)
-            uploadImageVM.imageName = path.substring(path.lastIndexOf("/") + 1);
+            uploadImageVM.imageName = path.substring(path.lastIndexOf("/") + 1)
             uploadImageVM.uploadImage()
         } else
             activity?.toast(getString(R.string.error_select_image))
@@ -234,6 +270,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             }
             UiStates.Success -> {
                 onSuccess()
+                findNavController().navigateUp()
             }
             UiStates.Error -> {
                 activity?.snackBar(updateProfileVM.message, binding.viewRoot)
@@ -276,7 +313,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private fun onSuccess() {
         activity?.snackBar(requireActivity().getString(R.string.success), binding.viewRoot)
         requireActivity().hideKeyboard()
-        viewModel.getUserData()
+        //viewModel.getUserData()
     }
 
     private fun onLoading() {
