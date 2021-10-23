@@ -80,7 +80,7 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setUpViewsClicks() {
         binding.toolbar.backImgToolbar.setOnClickListener { findNavController().navigateUp() }
-        binding.profileImg.setOnClickListener { chooseImages() }
+       // binding.profileImg.setOnClickListener { chooseImages() }
         binding.editBtn.setOnClickListener { validation() }
     }
 
@@ -101,10 +101,10 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             binding.passwordEt.error = getString(R.string.required_field)
             return
         }
-        if (password.length < 8) {
-            binding.passwordEt.error = getString(R.string.password_validation)
-            return
-        }
+//        if (password.length < 8) {
+//            binding.passwordEt.error = getString(R.string.password_validation)
+//            return
+//        }
         if (email.isBlank()) {
             binding.userEmailEt.error = getString(R.string.required_field)
             return

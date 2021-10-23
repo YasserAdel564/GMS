@@ -55,10 +55,12 @@ constructor(
                 val details: String = soapObject.getProperty("details").toString()
                 val img: String = soapObject.getProperty("picture").toString()
                 val writer: String = soapObject.getProperty("Writer").toString()
-                val link: String = soapObject.getProperty("Externallink").toString()
+                val link: String = soapObject.getProperty("Column1").toString()
                 val views: String = soapObject.getProperty("Views").toString()
                 val reviews: String = soapObject.getProperty("Reviews").toString()
                 val date: String = soapObject.getProperty("publishdate").toString()
+//                val video: String = soapObject.getProperty("Video").toString()
+                Log.e("video", preferencesHelper.userId)
                 videosList.add(
                     (VideoModel(
                         id = id.toInt(),

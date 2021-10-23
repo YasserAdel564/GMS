@@ -77,10 +77,10 @@ class LoginFragment : Fragment() {
             binding.passwordEt.error = getString(R.string.empty_password)
             return
         }
-        if (password.length < 8) {
-            binding.passwordEt.error = getString(R.string.password_validation)
-            return
-        }
+//        if (password.length < 8) {
+//            binding.passwordEt.error = getString(R.string.password_validation)
+//            return
+//        }
         viewModel.login(email, password)
     }
 
