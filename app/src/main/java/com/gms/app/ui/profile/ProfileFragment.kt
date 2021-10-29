@@ -167,21 +167,21 @@ class ProfileFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     }
 
-    @AfterPermissionGranted(Constants.RC_PERMISSION_STORAGE_CAMERA)
-    private fun chooseImages() {
-        val perms = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-        if (EasyPermissions.hasPermissions(requireActivity(), *perms)) {
-            showChooseDialog()
-        } else {
-            EasyPermissions.requestPermissions(
-                this, resources.getString(R.string.permissions_needed),
-                Constants.RC_PERMISSION_STORAGE_CAMERA, *perms
-            )
-        }
-    }
+//    @AfterPermissionGranted(Constants.RC_PERMISSION_STORAGE_CAMERA)
+//    private fun chooseImages() {
+//        val perms = arrayOf(
+//            Manifest.permission.CAMERA,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+//        )
+//        if (EasyPermissions.hasPermissions(requireActivity(), *perms)) {
+//            showChooseDialog()
+//        } else {
+//            EasyPermissions.requestPermissions(
+//                this, resources.getString(R.string.permissions_needed),
+//                Constants.RC_PERMISSION_STORAGE_CAMERA, *perms
+//            )
+//        }
+//    }
 
     private fun showChooseDialog() {
         dialogBuilder = AlertDialog.Builder(requireActivity())
